@@ -15,3 +15,4 @@ yarn-error.log
 /.vscode
 /.ssh
 error_log
+package-lock.json
