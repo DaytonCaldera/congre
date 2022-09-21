@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('asignados', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_publicador');
             $table->foreignId('id_publicador')->references("id")->on("publicadores");
             $table->timestamps();
         });
