@@ -23,7 +23,7 @@
 @section('auth_body')
     <form action="{{ $login_url }}" method="post">
         @csrf
-        <input type="text" name="testlogin2" id="testlogin2">
+        {{-- <input type="text" name="testlogin2" id="testlogin2"> --}}
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
