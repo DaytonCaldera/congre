@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Labrador </b> Coronado',
     'logo_img' => 'public/vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -303,85 +303,86 @@ return [
 
         // Sidebar items:
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text'        => 'Inicio',
+            'url'         => 'home',
+            'icon'        => 'far fa-fw fa-file'
         ],
+        ['header' => 'Programas'],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Privilegios',
+            'url'  => 'privilegios/ver',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
+            'text'    => 'Programas predicacion',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Predicacion casa en casa',
+                    'icon'       => 'fas fa-door-open',
+                    'url'  => 'predicacion/casa/ver',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
+                    'text'    => 'Exhhibidores',
+                    'icon'       => 'fas fa-shopping-cart',
+                    'url'     => 'predicacion/publica/ver',
+                ]
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'Administracion'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text'       => 'Privilegios',
+            'icon'       => 'fas fa-tasks',
+            'url'        => 'admin/privilegios',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'       => 'Vida y ministerio',
+            'icon'       => 'fas fa-store',
+            'url'        => 'admin/vida_ministerio',
+            // 'submenu' => [
+            //     [
+            //         'text' => 'Seamos mejores maestros',
+            //         'icon' => 'fas fa-chalkboard-teacher',
+            //         'url'  => '#',
+            //     ],
+            //     [
+            //         'text'    => 'Nuestra vida cristiana',
+            //         'icon'    => 'fas fa-thumbs-up',
+            //         'url'     => '#',
+            //     ]
+            // ],
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
+            'text'       => 'Reunion fin de semana',
+            'icon'       => 'fas fa-sun',
+            'url'        => 'admin/fin_semana',
+        ],
+        [
+            'text'       => 'Publicadores',
+            'icon'       => 'fas fa-users',
+            'url'        => 'admin/publicadores',
+        ],
+        [
+            'text'       => 'Discursos',
+            'icon'       => 'fas fa-comment-dots',
             'url'        => '#',
+            'submenu' => [
+                [
+                    'text' => 'Programa de discursos',
+                    'icon'       => 'fas fa-comment-dots',
+                    'url'  => 'admin/discursos',
+                ],
+                [
+                    'text'    => 'Discursantes',
+                    'icon'       => 'fas fa-user-check',
+                    'url'     => 'admin/discursantes',
+                ],
+                [
+                    'text'    => 'Bosquejos',
+                    'icon'       => 'fas fa-book',
+                    'url'     => 'admin/bosquejos',
+                ]
+            ],
         ],
     ],
 
