@@ -7,8 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>@yield('title')</title>
     <!-- Scripts -->
     <script src="{{ asset('public/vendor/adminlte/dist/js/adminlte.min.js') }}" defer></script>
 
