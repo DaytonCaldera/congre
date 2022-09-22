@@ -1,5 +1,10 @@
-@extends('layouts.app')
+
+
+@extends('adminlte::page')
 @section('title', 'Reuniones')
+@section('content_header')
+    <h1>Pagina principal</h1>
+@stop
 @section('content')
     <div class="container">
         <div class="row justify-content-center" id="reunion_vida_ministerio">

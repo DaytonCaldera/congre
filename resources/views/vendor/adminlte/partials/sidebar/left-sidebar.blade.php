@@ -20,6 +20,10 @@
                 @endif>
                 {{-- Configured sidebar links --}}
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
+                <li class="nav-header">
+                    
+                </li>
+                
             </ul>
         </nav>
     </div>
