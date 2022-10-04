@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('salidas', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('discursante')->references("id")->on("discursantes");
-            $table->foreignId('bosquejo')->references("id")->on("bosquejos");
-            $table->string('congregacion');
-            $table->string('ubicacion');
-            $table->string('hora');
-            $table->date('fecha');
+            $table->foreignId("categoria")->references("id")->on("roles_categorias");
+            $table->string("nombre");
+            $table->string("codigo");
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salidas');
+        Schema::dropIfExists('roles');
     }
 };

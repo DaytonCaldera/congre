@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('discursantes', function (Blueprint $table) {
+        Schema::create('roles_categorias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('congregacion');
-            $table->string("telefono");
+            $table->string("nombre");
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('discursantes');
+        Schema::dropIfExists('roles_categorias');
     }
 };

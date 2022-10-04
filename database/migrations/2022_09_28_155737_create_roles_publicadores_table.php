@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('grupos', function (Blueprint $table) {
+        Schema::create('roles_publicadores', function (Blueprint $table) {
             $table->id();
-            $table->string('grupo');
-            $table->foreignId('superintendente')->references("id")->on("asignados");
-            $table->foreignId('auxiliar')->references("id")->on("asignados");
+            $table->foreignId("publicador")->references("id")->on("roles_categorias");
+            $table->text("roles");
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grupos');
+        Schema::dropIfExists('roles_publicadores');
     }
 };

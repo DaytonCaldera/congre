@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'public/vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -383,6 +383,17 @@ return [
                     'url'     => 'admin/bosquejos',
                 ]
             ],
+        ],
+        ['header' => 'Administracion interna','can'=>'intern-config'],
+        [
+            'text'       => 'Roles',
+            'icon'       => 'fas fa-tasks',
+            'url'        => 'admin/roles',
+        ],
+        [
+            'text'       => 'Acceso',
+            'icon'       => 'fas fa-users',
+            'url'        => 'admin/acceso',
         ],
     ],
 

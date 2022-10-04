@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('publicadores', function (Blueprint $table) {
+        Schema::create('publicadores_grupos', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre");
-            $table->string("telefono");
-            $table->string("email");
-            $table->integer("grupo");
+            $table->foreignId("publicador")->references("id")->on("publicadores");
+            $table->foreignId("grupo")->references("id")->on("grupos");
+            $table->unique("publicador","grupo");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publicadores');
+        Schema::dropIfExists('publicadores_grupos');
     }
 };
