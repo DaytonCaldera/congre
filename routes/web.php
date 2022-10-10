@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Recordatorio;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if(Auth::check())
+        return redirect()->route('home');
     return view('welcome');
 });
 
@@ -21,3 +26,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/publicadores', [App\Http\Controllers\PublicadoresController::class, 'index']);
+
+Route::get('/test/mail', [App\Http\Controllers\PublicadoresController::class,'send_mail']);
+Route::get('/test/view/mail',function(){return view('Recordatorio');});

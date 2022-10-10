@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\publicadores;
 use App\Http\Requests\StorepublicadoresRequest;
 use App\Http\Requests\UpdatepublicadoresRequest;
+use App\Mail\Recordatorio;
+use Illuminate\Support\Facades\Mail;
 
 class PublicadoresController extends Controller
 {
@@ -21,7 +23,8 @@ class PublicadoresController extends Controller
      */
     public function index()
     {
-        return view("paginas.administracion.publicadores.lista");
+        $publicadores = publicadores::all();
+        return view("paginas.administracion.publicadores.lista")->with(['publicadores' => $publicadores]);
     }
 
     /**
@@ -34,6 +37,11 @@ class PublicadoresController extends Controller
         //
     }
 
+    public function send_mail(){
+        Mail::to(['dayton.caldera1711@gmail.com'])->send(new Recordatorio());
+        return redirect('/');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -42,7 +50,6 @@ class PublicadoresController extends Controller
      */
     public function store(StorepublicadoresRequest $request)
     {
-        //
     }
 
     /**

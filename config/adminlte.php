@@ -384,7 +384,7 @@ return [
                 ]
             ],
         ],
-        ['header' => 'Administracion interna','can'=>'intern-config'],
+        ['header' => 'Administracion interna'],
         [
             'text'       => 'Roles',
             'icon'       => 'fas fa-tasks',
