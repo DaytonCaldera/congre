@@ -16,3 +16,4 @@ yarn-error.log
 /.ssh
 error_log
 package-lock.json
+storage

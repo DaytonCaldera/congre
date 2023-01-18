@@ -25,7 +25,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/publicadores', [App\Http\Controllers\PublicadoresController::class, 'index']);
+Route::get('/admin/publicadores', [App\Http\Controllers\PublicadoresController::class, 'index'])->name('lista.publicadores');
+Route::post('/admin/publicadores/store',[App\Http\Controllers\PublicadoresController::class,'store'])->name('store.publicador');
 
 Route::get('/test/mail', [App\Http\Controllers\PublicadoresController::class,'send_mail']);
 Route::get('/test/view/mail',function(){return view('Recordatorio');});

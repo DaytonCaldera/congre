@@ -42,7 +42,6 @@
 
                 {{-- Logo Label --}}
                 {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
-
             </a>
         </div>
 
