@@ -39,7 +39,7 @@ class PublicadoresController extends Controller
 
     public function send_mail(){
         Mail::to(['dayton.caldera1711@gmail.com'])->send(new Recordatorio());
-        return redirect('/');
+        return redirect()->route('lista.publicadores');
     }
 
     /**
@@ -50,6 +50,7 @@ class PublicadoresController extends Controller
      */
     public function store(StorepublicadoresRequest $request)
     {
+        
     }
 
     /**

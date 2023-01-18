@@ -24,7 +24,8 @@ class StorepublicadoresRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre'=>['required','string'],
+            'apellido1'=>['required','string'],
         ];
     }
 }
