@@ -9,6 +9,11 @@ RUN apt update
 # RUN apt install ./mysql-apt-config_0.8.22-1_all.deb
 # RUN apt update
 RUN apt-get update
+# RUN apt-get install -y gnupg2
+# RUN curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+# RUN bash nodesource_setup.sh
+RUN apt-get install nodejs -y
+RUN apt-get install npm -y
 RUN apt install git -y
 RUN apt install unzip -y
 # RUN apt install mariadb-server -y
@@ -43,3 +48,5 @@ RUN php artisan optimize
 RUN CI=true
 
 USER root
+
+EXPOSE 8181
