@@ -3,12 +3,14 @@
 @section('content_header')
     <h1>Publicadores</h1>
 @stop
+
 @section('content')
+{{-- {{dd($publicadores[0])}} --}}
 
 
 
     @php
-        $heads = ['ID', 'Nombre', 'Apellidos', ['label' => 'Acciones', 'no-export' => false, 'width' => 5]];
+        $heads = ['ID', 'Nombre', 'Apellido 1','Apellido 2', ['label' => 'Acciones', 'no-export' => false, 'width' => 5]];
         
         $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                 <i class="fa fa-lg fa-fw fa-pen"></i>
@@ -21,7 +23,7 @@
                </button>';
         
         $config = [
-            'data' => (array) $publicadores,
+            'data' => $publicadores,
             'order' => [[1, 'asc']],
             'columns' => [null, null, null, ['orderable' => false]],
             'search' => true,
@@ -63,13 +65,16 @@
             </div>
         </form>
         <br>
-        <x-adminlte-datatable id="table1" :heads="$heads">
-            @if (!empty($publicadores) && is_array($publicadores))
+        <x-adminlte-datatable id="tabla_pubs" :heads="$heads">
+            @if (!empty($publicadores))
                 @foreach ($config['data'] as $row)
+                {{-- {{dd($row)}} --}}
                     <tr>
-                        @foreach ($row as $cell)
-                            <td>{!! $cell !!}</td>
-                        @endforeach
+                            <td>{!! $row['id'] !!}</td>
+                            <td>{!! $row['nombre'] !!}</td>
+                            <td>{!! $row['apellido1'] !!}</td>
+                            <td>{!! $row['apellido2'] !!}</td>
+                            <td>{!! '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>' !!}</td>
                     </tr>
                 @endforeach
             @else
