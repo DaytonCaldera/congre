@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Recordatorio;
+use App\Http\Controllers\PublicadoresController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrivilegioController;
 
 
 /*
@@ -24,9 +27,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/publicadores', [App\Http\Controllers\PublicadoresController::class, 'index'])->name('lista.publicadores');
-Route::post('/admin/publicadores/store',[App\Http\Controllers\PublicadoresController::class,'store'])->name('store.publicador');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/admin/publicadores', [PublicadoresController::class, 'index'])->name('lista.publicadores');
+Route::post('/admin/publicadores/store',[PublicadoresController::class,'store'])->name('store.publicador');
 
-Route::get('/test/mail', [App\Http\Controllers\PublicadoresController::class,'send_mail']);
+Route::get('admin/privilegios',[PrivilegioController::class,'index'])->name('lista.roles');
+
+Route::get('/test/mail', [PublicadoresController::class,'send_mail']);
 Route::get('/test/view/mail',function(){return view('Recordatorio');});
