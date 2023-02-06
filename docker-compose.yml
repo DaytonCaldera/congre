@@ -6,50 +6,12 @@ services:
       context: .
     ports:
       - 8181:80
-    depends_on:
-      - db
     volumes:
       - .:/var/www/html:Z
       - vendor:/var/www/html/vendor 
       - storage:/var/www/html/storage
-    links:
-      - db
-    environment:
-      NODE_ENV: production
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: u350518943_s13S3
-      DB_PASSWORD: jE8TUXNDbg
-      DB_NAME: u350518943_QEzYO
-    networks:
-      c-network:
-        ipv4_address: 144.20.0.31
-  db:
-    image: mysql:latest
-    ports:
-      - 8083:3306
-    volumes:
-      - ./test-sql-2:/docker-entrypoint-initdb.d
-    environment:
-      MYSQL_DATABASE: u350518943_QEzYO
-      MYSQL_USER: u350518943_s13S3
-      MYSQL_PASSWORD: jE8TUXNDbg
-      MYSQL_ROOT_PASSWORD: root
-    networks:
-      c-network:
-        ipv4_address: 144.20.0.32
 
 volumes:
-  db:
-    driver: local
   vendor:
   storage:
 
-networks:
-  c-network:
-    # name: jm-network
-    driver: bridge
-    ipam:
-      # driver: default
-      config:
-        - subnet: 144.20.0.0/24

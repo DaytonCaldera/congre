@@ -4,24 +4,23 @@
     <h1>Publicadores</h1>
 @stop
 @section('content')
+    {{-- {{dd($publicadores[0])}} --}}
 
 
 
     @php
-        $heads = ['ID', 'Nombre', 'Apellidos', ['label' => 'Acciones', 'no-export' => false, 'width' => 5]];
         
-        $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                <i class="fa fa-lg fa-fw fa-pen"></i>
-            </button>';
-        $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Borrar">
-                  <i class="fa fa-lg fa-fw fa-trash"></i>
-              </button>';
-        $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Ver detalles">
-                   <i class="fa fa-lg fa-fw fa-eye"></i>
-               </button>';
+        $btnDelete = function ($id = '', $active = false) {
+            return $active ? '<button status-pub class="btn btn-xs btn-default text-success mx-1 shadow" title="Activo (Click para desactivar)" data-idpub="' . $id . '"><i class="fa fa-lg fa-fw fa-check"></i></button>' : '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Desactivado (Click para activar)" data-idpub="' . $id . '"><i class="fa fa-lg fa-fw fa-minus"></i></button>';
+            // return '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Borrar" data-idpub="' . $id . '">' . (($active) ? '<i class="fa fa-lg fa-fw fa-check"></i>' : '<i class="fa fa-lg fa-fw fa-check"></i>' ). '</button>';
+        };
+        $btnEdit = function ($id = '') {
+            return '<button edit-pub class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" data-idpub="' . $id . '" ><i class="fa fa-lg fa-fw fa-pen"></i></button>';
+        };
         
+        $heads = ['ID', 'Nombre', 'Apellido 1', 'Apellido 2', ['label' => 'Acciones', 'no-export' => false]];
         $config = [
-            'data' => (array) $publicadores,
+            'data' => $publicadores,
             'order' => [[1, 'asc']],
             'columns' => [null, null, null, ['orderable' => false]],
             'search' => true,
@@ -63,13 +62,18 @@
             </div>
         </form>
         <br>
-        <x-adminlte-datatable id="table1" :heads="$heads">
-            @if (!empty($publicadores) && is_array($publicadores))
+        <x-adminlte-datatable id="tabla_pubs" :heads="$heads" beautify>
+            @if (!empty($publicadores))
                 @foreach ($config['data'] as $row)
                     <tr>
-                        @foreach ($row as $cell)
-                            <td>{!! $cell !!}</td>
-                        @endforeach
+                        <td>{!! $row['id'] !!}</td>
+                        <td>{!! $row['nombre'] !!}</td>
+                        <td>{!! $row['apellido1'] !!}</td>
+                        <td>{!! $row['apellido2'] !!}</td>
+                        <td>{!! '<nobr>' .
+                            $btnEdit($row['id']) .
+                            $btnDelete($row['id'], $row['activo']) .
+                            '</nobr>' !!}</td>
                     </tr>
                 @endforeach
             @else
@@ -81,3 +85,7 @@
 
     </div>
 @endsection
+
+@push('js')
+    <script src="{{ URL::asset('public/comun/js/paginas/Publicadores.js') }}"></script>
+@endpush
