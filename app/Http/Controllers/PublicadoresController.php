@@ -24,6 +24,7 @@ class PublicadoresController extends Controller
     public function index()
     {
         $publicadores = publicadores::all();
+        // dd($publicadores);
         return view("paginas.administracion.publicadores.lista")->with(['publicadores' => $publicadores]);
     }
 
@@ -61,7 +62,7 @@ class PublicadoresController extends Controller
      */
     public function show(publicadores $publicadores)
     {
-        //
+        return response()->json(publicadores::find($publicadores->id));
     }
 
     /**

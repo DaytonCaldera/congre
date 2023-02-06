@@ -1,0 +1,6 @@
+window.$ = {
+    ajax: function(options) {
+
+    }
+
+}
