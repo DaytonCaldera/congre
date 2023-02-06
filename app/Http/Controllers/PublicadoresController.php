@@ -62,7 +62,7 @@ class PublicadoresController extends Controller
      */
     public function show(publicadores $publicadores)
     {
-        //
+        return response()->json(publicadores::find($publicadores->id));
     }
 
     /**
