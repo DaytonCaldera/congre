@@ -14,11 +14,11 @@
             return $active ? '<button status-pub class="btn btn-xs btn-default text-success mx-1 shadow" title="Activo (Click para desactivar)" data-idpub="' . $id . '"><i class="fa fa-lg fa-fw fa-check"></i></button>' : '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Desactivado (Click para activar)" data-idpub="' . $id . '"><i class="fa fa-lg fa-fw fa-minus"></i></button>';
             // return '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Borrar" data-idpub="' . $id . '">' . (($active) ? '<i class="fa fa-lg fa-fw fa-check"></i>' : '<i class="fa fa-lg fa-fw fa-check"></i>' ). '</button>';
         };
-        $btnEdit = function ($id = '') {
-            return '<button edit-pub class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" data-id="' . $id . '" ><i class="fa fa-lg fa-fw fa-pen"></i></button>';
+        $btnEdit = function ($dataset = '') {
+            return '<button edit-priv data-toggle="modal" data-target="#modal-edit-priv" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" data-pname="' . $dataset->privilegio . '" data-cat="' . $dataset->categoria . '" data-id="' . $dataset->id . '" ><i class="fa fa-lg fa-fw fa-pen"></i></button>';
         };
         
-        $heads = ['ID', 'Privilegio','Categoria',['label' => 'Acciones', 'no-export' => false]];
+        $heads = ['ID', 'Privilegio', 'Categoria', ['label' => 'Acciones', 'no-export' => false]];
         $config = [
             'data' => $privilegios,
             'order' => [[1, 'asc']],
@@ -62,16 +62,14 @@
             </div>
         </form> --}}
         <br>
-        <x-adminlte-datatable id="tabla_pubs" :heads="$heads" beautify>
+        <x-adminlte-datatable id="tabla_pubs" :heads="$heads">
             @if (!empty($privilegios))
                 @foreach ($config['data'] as $row)
                     <tr>
                         <td>{!! $row['id'] !!}</td>
                         <td>{!! $row['privilegio'] !!}</td>
                         <td>{!! $row['categoria'] !!}</td>
-                        <td>{!! '<nobr>' .
-                            $btnEdit($row['id']) .
-                            '</nobr>' !!}</td>
+                        <td>{!! '<nobr>' . $btnEdit((object) $row) . '</nobr>' !!}</td>
                     </tr>
                 @endforeach
             @else
@@ -80,10 +78,23 @@
                 </tr>
             @endif
         </x-adminlte-datatable>
+        <x-adminlte-modal id="modal-edit-priv" title="Editar privilegio" theme="lightblue" icon="fas fa-bolt" size='lg'>
+            <div class="row">
+                <div class="col-6">
+                    <input type="hidden" id="priv-id">
+                    <input type="hidden" id="priv-cat">
+                    <input type="text" class="form-control" id="priv-name" placeholder="">
+                </div>
+            </div>
 
+            <x-slot name="footerSlot">
+                <x-adminlte-button class="mr-auto" theme="success" label="Guardar" id="save-priv" />
+                <x-adminlte-button theme="danger" label="Cancelar" data-dismiss="modal" />
+            </x-slot>
+        </x-adminlte-modal>
     </div>
 @endsection
 
 @push('js')
-    {{-- <script src="{{ URL::asset('public/comun/js/paginas/Publicadores.js') }}"></script> --}}
+    <script src="{{ URL::asset('public/comun/js/paginas/Privilegios.js') }}"></script>
 @endpush

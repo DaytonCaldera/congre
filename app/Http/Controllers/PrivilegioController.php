@@ -70,7 +70,11 @@ class PrivilegioController extends Controller
      */
     public function update(UpdatePrivilegioRequest $request, Privilegio $privilegio)
     {
-        //
+        // return response()->json($request);
+        $privilegio = Privilegio::find($request->id);
+        $privilegio->privilegio = $request->name;
+        $privilegio->categoria = $request->categoria;
+        return $privilegio->save();
     }
 
     /**
