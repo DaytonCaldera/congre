@@ -22,16 +22,15 @@ class Publicadores {
         let id = e.currentTarget.dataset.idpub;
         // console.log(Publicadores.getDetailData(id));
         this.getDetailData(id).then(function(data){
-            console.log(data);
+            
         });
     }
 
     getDetailData(id) {
         // console.log(id);
         return $.ajax({
-            url: "/api/publicador/data",
-            type:'GET',
-            data:{id:id}
+            url: "/admin/publicadores/" + id,
+            type:'GET'
         });
     }
 }
