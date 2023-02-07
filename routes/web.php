@@ -32,6 +32,7 @@ Route::get('/admin/publicadores', [PublicadoresController::class, 'index'])->nam
 Route::post('/admin/publicadores/store',[PublicadoresController::class,'store'])->name('store.publicador');
 
 Route::get('admin/privilegios',[PrivilegioController::class,'index'])->name('lista.roles');
+Route::post('admin/privilegio/update',[PrivilegioController::class,'update']);
 
 Route::get('/test/mail', [PublicadoresController::class,'send_mail']);
 Route::get('/test/view/mail',function(){return view('Recordatorio');});
