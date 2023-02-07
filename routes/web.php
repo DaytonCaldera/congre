@@ -29,7 +29,9 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/publicadores', [PublicadoresController::class, 'index'])->name('lista.publicadores');
+Route::get('/admin/publicadores/{id}', [PublicadoresController::class, 'show'])->name('ver.publicador');
 Route::post('/admin/publicadores/store',[PublicadoresController::class,'store'])->name('store.publicador');
+Route::post('/admin/publicadores/update', [PublicadoresController::class,'update'])->name('update.publicador');
 
 Route::get('admin/privilegios',[PrivilegioController::class,'index'])->name('lista.roles');
 Route::post('admin/privilegio/update',[PrivilegioController::class,'update']);

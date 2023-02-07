@@ -15,15 +15,17 @@
             // return '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Borrar" data-idpub="' . $id . '">' . (($active) ? '<i class="fa fa-lg fa-fw fa-check"></i>' : '<i class="fa fa-lg fa-fw fa-check"></i>' ). '</button>';
         };
         $btnEdit = function ($id = '') {
-            return '<button edit-pub class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" data-idpub="' . $id . '" ><i class="fa fa-lg fa-fw fa-pen"></i></button>';
+            return '<button edit-pub data-toggle="modal" data-target="#modalPurple" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar" data-idpub="' . $id . '" ><i class="fa fa-lg fa-fw fa-pen"></i></button>';
         };
         
-        $heads = ['ID', 'Nombre', 'Apellido 1', 'Apellido 2', ['label' => 'Acciones', 'no-export' => false]];
+        $heads = ['Nombre', 'Apellido 1', 'Apellido 2', ['label' => 'Acciones', 'no-export' => false]];
         $config = [
             'data' => $publicadores,
             'order' => [[1, 'asc']],
             'columns' => [null, null, null, ['orderable' => false]],
             'search' => true,
+            'paging' => true,
+            'lengthMenu' => [10, 50, 100, 500]
         ];
     @endphp
     <div class="container">
@@ -62,18 +64,14 @@
             </div>
         </form>
         <br>
-        <x-adminlte-datatable id="tabla_pubs" :heads="$heads" beautify>
+        <x-adminlte-datatable id="tabla_pubs" :heads="$heads" beautify with-buttons>
             @if (!empty($publicadores))
                 @foreach ($config['data'] as $row)
                     <tr>
-                        <td>{!! $row['id'] !!}</td>
                         <td>{!! $row['nombre'] !!}</td>
                         <td>{!! $row['apellido1'] !!}</td>
                         <td>{!! $row['apellido2'] !!}</td>
-                        <td>{!! '<nobr>' .
-                            $btnEdit($row['id']) .
-                            $btnDelete($row['id'], $row['activo']) .
-                            '</nobr>' !!}</td>
+                        <td>{!! '<nobr>' . $btnEdit($row['id']) . $btnDelete($row['id'], $row['activo']) . '</nobr>' !!}</td>
                     </tr>
                 @endforeach
             @else
@@ -82,7 +80,7 @@
                 </tr>
             @endif
         </x-adminlte-datatable>
-
+        @include('paginas.administracion.publicadores.modal')
     </div>
 @endsection
 
