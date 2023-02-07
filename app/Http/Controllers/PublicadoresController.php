@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\publicadores;
 use App\Http\Requests\StorepublicadoresRequest;
 use App\Http\Requests\UpdatepublicadoresRequest;
+use Illuminate\Foundation\Http\FormRequest as Request;
 use App\Mail\Recordatorio;
 use Illuminate\Support\Facades\Mail;
 
@@ -60,9 +61,9 @@ class PublicadoresController extends Controller
      * @param  \App\Models\publicadores  $publicadores
      * @return \Illuminate\Http\Response
      */
-    public function show(publicadores $publicadores)
+    public function show($id)
     {
-        return response()->json(publicadores::find($publicadores->id));
+        return response()->json(publicadores::find($id));
     }
 
     /**
