@@ -6,7 +6,8 @@ use App\Mail\Recordatorio;
 use App\Http\Controllers\PublicadoresController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrivilegioController;
-
+use App\Http\Controllers\WebScrapping;
+use App\Jobs\Extraer;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,9 @@ Route::post('admin/privilegio/update',[PrivilegioController::class,'update']);
 
 Route::get('/test/mail', [PublicadoresController::class,'send_mail']);
 Route::get('/test/view/mail',function(){return view('Recordatorio');});
+
+Route::get('/test_scraping/{year?}/{week?}',[WebScrapping::class,'extract']);
+// Route::get('/test_scraping/{year?}/{week?}',function($year = 2023, $week = 1){
+//     Extraer::dispatch($year,$week);
+//     return response('This is the end<br>');
+// });
